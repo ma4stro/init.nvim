@@ -38,6 +38,12 @@ Plug 'machakann/vim-sandwich'                           " make sandwiches
 Plug 'christoomey/vim-tmux-navigator'                   " seamless vim and tmux navigation
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
 Plug 'memgraph/cypher.vim'
+" ================= my-own ================= "{{{
+Plug 'preservim/tagbar'                                 " tagbar
+Plug 'preservim/nerdtree'                               " nerdtree
+Plug 'cocopon/iceberg.vim'                                    " nordtheme
+Plug 'mbbill/undotree'
+Plug 'brglng/vim-sidebar-manager'
 call plug#end()
 
 "}}}
@@ -92,8 +98,17 @@ set shortmess+=c
 set signcolumn=yes
 
 " Themeing
-let g:material_style = 'oceanic'
-colorscheme vim-material
+let g:material_style = 'palenight'
+" Important!!
+if has('termguicolors')
+  set termguicolors
+endif
+
+" The configuration options should be placed before `colorscheme sonokai`.
+let g:sonokai_style = 'andromeda'
+let g:sonokai_better_performance = 1
+
+colorscheme iceberg
 hi Pmenu guibg='#00010a' guifg=white                    " popup menu colors
 hi Comment gui=italic cterm=italic                      " italic comments
 hi Search guibg=#b16286 guifg=#ebdbb2 gui=NONE          " search string highlight color
@@ -439,8 +454,64 @@ nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
 
 "}}}
 
-
 " ======================== Additional sourcing ====================== "{{{
 source ~/.config/nvim/statusline.vim
+
+
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+" =============== tagbar ===================
+nmap <F8> :TagbarToggle<CR>
+
+" =============== nerdtree ===========
+nnoremap <leader>n :NERDTreeFocus<CR>
+nnoremap <C-n> :NERDTree<CR>
+nnoremap <C-t> :NERDTreeToggle<CR>
+nnoremap <C-f> :NERDTreeFind<CR>
+
+" ============= undotree ============
+nnoremap <F5> :UndotreeToggle<CR>
+
+" sidebar manager
+let g:NERDTreeWinPos = 'left'
+let g:NERDTreeWinSize = 30
+let g:NERDTreeQuitOnOpen = 0
+let g:tagbar_left = 1
+let g:tagbar_width = 30
+let g:tagbar_autoclose = 0
+let g:tagbar_autofocus = 1
+let g:undotree_SetFocusWhenToggle = 1
+let g:undotree_SplitWidth = 30
+
+let g:sidebars = {
+  \ 'nerdtree': {
+  \     'position': 'left',
+  \     'check_win': {nr -> getwinvar(nr, '&filetype') ==# 'nerdtree'},
+  \     'open': 'NERDTree',
+  \     'close': 'NERDTreeClose'
+  \ },
+  \ 'tagbar': {
+  \     'position': 'left',
+  \     'check_win': {nr -> bufname(winbufnr(nr)) =~ '__Tagbar__'},
+  \     'open': 'TagbarOpen',
+  \     'close': 'TagbarClose'
+  \ },
+  \ 'undotree': {
+  \     'position': 'left',
+  \     'check_win': {nr -> getwinvar(nr, '&filetype') ==# 'undotree'},
+  \     'open': 'UndotreeShow',
+  \     'close': 'UndotreeHide'
+  \ }
+  \ }
+
+noremap <silent> <M-1> :call sidebar#toggle('nerdtree')<CR>
+noremap <silent> <M-2> :call sidebar#toggle('tagbar')<CR>
+noremap <silent> <M-3> :call sidebar#toggle('undotree')<CR>
+
+let g:startify_session_before_save = ['call sidebar#close_all()']
 
 "}}}
