@@ -41,7 +41,7 @@ Plug 'memgraph/cypher.vim'
 " ================= my-own ================= "{{{
 Plug 'preservim/tagbar'                                 " tagbar
 Plug 'preservim/nerdtree'                               " nerdtree
-Plug 'cocopon/iceberg.vim'                                    " nordtheme
+Plug 'ma4stro/iceberg'                              " colorscheme
 Plug 'mbbill/undotree'
 Plug 'brglng/vim-sidebar-manager'
 call plug#end()
@@ -514,4 +514,10 @@ noremap <silent> <M-3> :call sidebar#toggle('undotree')<CR>
 
 let g:startify_session_before_save = ['call sidebar#close_all()']
 
+
+
+" following maps ALT + c to :bd
+nnoremap <M-c> :bd<CR>
+nnoremap <space> :noh<CR>
+nnoremap <M-h> za
 "}}}
