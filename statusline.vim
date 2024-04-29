@@ -54,9 +54,9 @@ function! ModeIcon(mode) " {{{
         return ' '
         " Visual mode
     elseif a:mode == 'v'
-        return ' '
+        return '󰒅 '
     elseif a:mode == 'V'
-        return ' '
+        return '󰴲 '
     elseif a:mode == "\<C-V>"
         return '礪'
         " Command mode

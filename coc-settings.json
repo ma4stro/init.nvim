@@ -12,6 +12,7 @@
     "python",
     "dart"
   ],
+  "coc.preferences.noselect": false,
 
   // suggest settings
   "suggest.noselect": false,

@@ -354,6 +354,7 @@ nmap <Tab> :bnext<CR>
 nmap <S-Tab> :bprevious<CR>
 noremap <leader>e :PlugInstall<CR>
 noremap <C-q> :q<CR>
+noremap <C-d> :bw<CR>
 
 " new line in normal mode and back
 map <Enter> o<ESC>
@@ -472,6 +473,7 @@ nnoremap <leader>n :NERDTreeFocus<CR>
 nnoremap <C-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
+nnoremap <C-r> :NERDTreeRefreshRoot<CR>
 
 " ============= undotree ============
 nnoremap <F5> :UndotreeToggle<CR>
