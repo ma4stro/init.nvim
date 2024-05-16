@@ -387,7 +387,8 @@ noremap <silent><esc> <esc>:noh<CR><esc>
 nnoremap <F2> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
 
 " markdown preview
-au FileType markdown nmap <leader>m :MarkdownPreview<CR>
+let g:mkdp_browser = 'firefox'
+au FileType markdown nmap <leader>m :MarkdownPreviewToggle<CR>
 
 "" FZF
 nnoremap <silent> <leader>f :Files<CR>
