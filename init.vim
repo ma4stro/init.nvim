@@ -344,7 +344,7 @@ endfunction
 "" the essentials
 let mapleader=","
 nnoremap ; :
-nmap \ <leader>q
+nmap \ <leader>
 map <F6> :Startify <CR>
 nmap <leader>r :so ~/.config/nvim/init.vim<CR>
 nmap <leader>q :bd<CR>
